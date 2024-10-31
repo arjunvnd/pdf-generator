@@ -47,8 +47,8 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
   },
   column: {
-    padding: 0,
     flex: 1,
+    height: "auto",
   },
   tableData: {
     borderBottom: "1px solid black",
@@ -56,10 +56,17 @@ export const styles = StyleSheet.create({
     flex: 1,
     fontSize: 12,
     paddingHorizontal: 12,
+    justifyContent: "center",
   },
   serialColumn: {
     maxWidth: 60,
     textAlign: "right",
     paddingHorizontal: 6,
+  },
+  heading: {
+    borderBottom: 1,
+    fontSize: 12,
+    fontWeight: "bold",
+    marginBottom: 16,
   },
 });
