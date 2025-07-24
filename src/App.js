@@ -1,5 +1,4 @@
-import { PDFViewer } from "@react-pdf/renderer";
-import { SampleReport } from "./components/SampleReport";
+import UserInput from "./components/UserInput/UserInput";
 
 const App = () => (
   <div
@@ -10,13 +9,7 @@ const App = () => (
       justifyContent: "center",
     }}
   >
-    <PDFViewer
-      style={{
-        width: "100%",
-      }}
-    >
-      <SampleReport />
-    </PDFViewer>
+    <UserInput />
   </div>
 );
 
