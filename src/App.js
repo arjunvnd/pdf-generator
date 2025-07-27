@@ -1,9 +1,9 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 
 import routes from "./routes";
 import { BanksFormOneProvider } from "./context/BanksFormOne";
 
-const router = createBrowserRouter(routes);
+const router = createHashRouter(routes);
 const App = () => {
   return (
     <BanksFormOneProvider>
