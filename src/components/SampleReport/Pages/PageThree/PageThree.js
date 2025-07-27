@@ -5,7 +5,7 @@ import { SimpleTableRow } from "../../components/SimpleTableRow";
 
 export const PageThree = () => {
   return (
-    <Page size="A4" style={styles.page}>
+    <Page size="LETTER" style={styles.page}>
       <View style={[styles.tableContainer, { marginTop: 36, borderBottom: 0 }]}>
         <View style={styles.row}>
           <View style={[styles.tableData, { alignItems: "center" }]}>

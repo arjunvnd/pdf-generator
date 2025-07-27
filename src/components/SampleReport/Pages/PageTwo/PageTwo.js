@@ -27,15 +27,19 @@ export const PageTwo = ({
   propertyBoundaries = {},
 }) => {
   return (
-    <Page size="A4" style={styles.page}>
+    <Page size="LETTER" style={styles.page}>
       <View
         style={{
           alignItems: "center",
         }}
       >
-        <Text style={styles.heading}>Annexure I</Text>
-        <Text style={styles.heading}>Default Bank Branch</Text>
-        <Text style={styles.heading}>Unit/Post Sanction Visit Report</Text>
+        <Text style={[styles.heading, { marginBottom: 12 }]}>Annexure I</Text>
+        <Text style={[styles.heading, { marginBottom: 12 }]}>
+          Default Bank Branch
+        </Text>
+        <Text style={[styles.heading, { marginBottom: 12 }]}>
+          Unit/Post Sanction Visit Report
+        </Text>
       </View>
 
       <View style={[styles.tableContainer, { borderBottom: 0 }]}>
@@ -166,31 +170,31 @@ export const PageTwo = ({
               }}
             >
               <Text
-                style={{ flexGrow: 1, flexBasis: "33%", fontSize: 12 }}
+                style={{ flexGrow: 1, flexBasis: "33%", fontSize: 8 }}
               ></Text>
-              <Text style={{ flexGrow: 1, flexBasis: "33%", fontSize: 12 }}>
+              <Text style={{ flexGrow: 1, flexBasis: "33%", fontSize: 8 }}>
                 AS PER SALE DEED
               </Text>
-              <Text style={{ flexGrow: 1, flexBasis: "33%", fontSize: 12 }}>
+              <Text style={{ flexGrow: 1, flexBasis: "33%", fontSize: 8 }}>
                 ACTUALS
               </Text>
             </View>
-            <View style={{ fontSize: 12, flexDirection: "row" }}>
+            <View style={{ fontSize: 8, flexDirection: "row" }}>
               <Text style={{ flex: 1 }}>EAST</Text>
               <Text style={{ flex: 1 }}>{propertyBoundaries.east || ""}</Text>
               <Text style={{ flex: 1 }}>{propertyBoundaries.east || ""}</Text>
             </View>
-            <View style={{ fontSize: 12, flexDirection: "row" }}>
+            <View style={{ fontSize: 8, flexDirection: "row" }}>
               <Text style={{ flex: 1 }}>WEST</Text>
               <Text style={{ flex: 1 }}>{propertyBoundaries.west || ""}</Text>
               <Text style={{ flex: 1 }}>{propertyBoundaries.west || ""}</Text>
             </View>
-            <View style={{ fontSize: 12, flexDirection: "row" }}>
+            <View style={{ fontSize: 8, flexDirection: "row" }}>
               <Text style={{ flex: 1 }}>NORTH</Text>
               <Text style={{ flex: 1 }}>{propertyBoundaries.north || ""}</Text>
               <Text style={{ flex: 1 }}>{propertyBoundaries.north || ""}</Text>
             </View>
-            <View style={{ fontSize: 12, flexDirection: "row" }}>
+            <View style={{ fontSize: 8, flexDirection: "row" }}>
               <Text style={{ flex: 1 }}>SOUTH</Text>
               <Text style={{ flex: 1 }}>{propertyBoundaries.south || ""}</Text>
               <Text style={{ flex: 1 }}>{propertyBoundaries.south || ""}</Text>
@@ -203,7 +207,7 @@ export const PageTwo = ({
       <View style={[styles.tableContainer, { marginTop: 36, borderBottom: 0 }]}>
         <View style={styles.row}>
           <View style={[styles.tableData, { alignItems: "center" }]}>
-            <Text style={styles.heading}>
+            <Text style={[styles.heading, { fontSize: 8 }]}>
               FOR RETAIL LOANS (HOUSING, VEHICLE, MORTGAGE, CANARA RENT ETC.)
             </Text>
           </View>
@@ -233,7 +237,9 @@ export const PageTwo = ({
       <View style={[styles.tableContainer, { marginTop: 36, borderBottom: 0 }]}>
         <View style={styles.row}>
           <View style={[styles.tableData, { alignItems: "center" }]}>
-            <Text style={styles.heading}>MSME/CORPORATE /AGRI LOANS</Text>
+            <Text style={[styles.heading, { fontSize: 8 }]}>
+              MSME/CORPORATE /AGRI LOANS
+            </Text>
           </View>
         </View>
         <SimpleTableRow

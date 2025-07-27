@@ -15,7 +15,7 @@ const today = () => {
 
 export const PageOne = () => {
   return (
-    <Page size="A4" style={styles.page}>
+    <Page size="LETTER" style={styles.page}>
       <BorderedSection
         style={{
           flexDirection: "row",

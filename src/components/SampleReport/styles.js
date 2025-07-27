@@ -4,7 +4,7 @@ import { StyleSheet } from "@react-pdf/renderer";
 export const styles = StyleSheet.create({
   page: {
     backgroundColor: "#fff",
-    paddingHorizontal: 36,
+    padding: 60,
   },
   genralInfoSection: {
     margin: 10,
@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
     borderBottom: "1px solid black",
     borderRight: "1px solid black",
     flex: 1,
-    fontSize: 12,
+    fontSize: 8,
     paddingHorizontal: 12,
     justifyContent: "center",
   },
@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
   },
   heading: {
     borderBottom: 1,
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: "bold",
     marginBottom: 16,
   },

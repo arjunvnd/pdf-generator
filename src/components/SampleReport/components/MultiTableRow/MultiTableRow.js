@@ -13,7 +13,7 @@ export const MultiTableRow = ({ title, value }) => {
         style={{
           borderRight: "1px solid black",
           borderBottom: "1px solid black",
-          fontSize: 12,
+          fontSize: 8,
           paddingHorizontal: 12,
           flex: 1,
         }}
@@ -23,7 +23,7 @@ export const MultiTableRow = ({ title, value }) => {
       <Text
         style={{
           borderBottom: "1px solid black",
-          fontSize: 12,
+          fontSize: 8,
           paddingHorizontal: 12,
           flex: 1,
         }}
