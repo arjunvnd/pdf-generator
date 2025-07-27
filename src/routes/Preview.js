@@ -1,7 +1,10 @@
 import { PDFViewer } from "@react-pdf/renderer";
 import { SampleReport } from "../components/SampleReport";
+import { useBanksFormOne } from "../context/BanksFormOne";
 
 export const Preview = () => {
+  const { form } = useBanksFormOne();
+
   return (
     <div
       style={{
@@ -16,7 +19,7 @@ export const Preview = () => {
           width: "100%",
         }}
       >
-        <SampleReport />
+        <SampleReport form={form} />
       </PDFViewer>
     </div>
   );

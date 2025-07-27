@@ -1,16 +1,15 @@
-import UserInput from "./components/UserInput/UserInput";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const App = () => (
-  <div
-    style={{
-      height: "100%",
-      width: "100%",
-      display: "flex",
-      justifyContent: "center",
-    }}
-  >
-    <UserInput />
-  </div>
-);
+import routes from "./routes";
+import { BanksFormOneProvider } from "./context/BanksFormOne";
+
+const router = createBrowserRouter(routes);
+const App = () => {
+  return (
+    <BanksFormOneProvider>
+      <RouterProvider router={router} />
+    </BanksFormOneProvider>
+  );
+};
 
 export default App;

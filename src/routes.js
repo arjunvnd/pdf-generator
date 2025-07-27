@@ -1,10 +1,10 @@
 import { Preview } from "./routes/Preview";
-import App from "./App";
+import { Home } from "./routes/Home";
 
 const routes = [
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
   },
   {
     path: "/preview",

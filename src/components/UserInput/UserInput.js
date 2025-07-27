@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Grid2,
   Box,
@@ -8,60 +9,37 @@ import {
   Button,
 } from "@mui/material";
 
-const initialState = {
-  customerName: "",
-  constitution: "",
-  bankingArrangement: "",
-  consortiumLeaderBank: "",
-  contactTelephone: "",
-  contactTelephone1: "",
-  contactTelephone2: "",
-  address: "",
-  adverseObservations: "",
-  facilitiesPermitted: "",
-  purposeOfFacilities: "",
-  sanctionAmount: "",
-  lastSanctionDate: "",
-  loanAccountNumber: "",
-  amountDisbursed: "",
-  siteAddress: "",
-  geoCoordinates: "",
-  preSanctionVisitDate: "",
-  propertyBoundaries: {
-    east: "",
-    west: "",
-    north: "",
-    south: "",
-    asPerSaleDeed: "",
-    actuals: "",
-  },
-  retailComments: "",
-  retailAssetVerification: "",
-  msmeComments: "",
-  commonVerification: "",
-};
-
+import { useBanksFormOne } from "../../context/BanksFormOne";
+import { initialState } from "../../context/BanksFormOne";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { SampleReport } from "../SampleReport";
 export default function UserInput() {
-  const [form, setForm] = useState(initialState);
+  const { form, updateForm } = useBanksFormOne();
+  const navigate = useNavigate();
+  const handleClear = () => {
+    Object.keys(initialState).forEach((key) => {
+      if (key === "propertyBoundaries") {
+        Object.keys(initialState.propertyBoundaries).forEach((subKey) => {
+          updateForm(
+            `propertyBoundaries.${subKey}`,
+            initialState.propertyBoundaries[subKey]
+          );
+        });
+      } else {
+        updateForm(key, initialState[key]);
+      }
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name.startsWith("propertyBoundaries.")) {
-      const key = name.split(".")[1];
-      setForm((prev) => ({
-        ...prev,
-        propertyBoundaries: { ...prev.propertyBoundaries, [key]: value },
-      }));
-    } else {
-      setForm((prev) => ({ ...prev, [name]: value }));
-    }
+    updateForm(name, value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can replace this with any action (API, state, etc.)
     console.log("Form values:", form);
-    alert("Form values captured! Check the console for details.");
+    navigate("/preview");
   };
 
   return (
@@ -71,7 +49,7 @@ export default function UserInput() {
           Customer Details
         </Typography>
         <Grid2 container spacing={2}>
-          <Grid2 xs={12} sm={6}>
+          <Grid2 size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Name of the Customer"
               name="customerName"
@@ -80,7 +58,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={6}>
+          <Grid2 size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Constitution"
               name="constitution"
@@ -89,7 +67,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={6}>
+          <Grid2 size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Banking Arrangement"
               name="bankingArrangement"
@@ -98,7 +76,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={6}>
+          <Grid2 size={{ xs: 12, sm: 6 }}>
             <TextField
               label="If Consortium, Leader Bank"
               name="consortiumLeaderBank"
@@ -107,7 +85,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={4}>
+          <Grid2 size={{ xs: 12, sm: 4 }}>
             <TextField
               label="Telephone"
               name="contactTelephone"
@@ -116,25 +94,25 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={4}>
+          <Grid2 size={{ xs: 12, sm: 4 }}>
             <TextField
-              label="Telephone 1"
-              name="contactTelephone1"
-              value={form.contactTelephone1}
+              label="MOBILE PHONE"
+              name="mobilePhone"
+              value={form.mobilePhone}
               onChange={handleChange}
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={4}>
+          <Grid2 size={{ xs: 12, sm: 4 }}>
             <TextField
-              label="Telephone 2"
-              name="contactTelephone2"
-              value={form.contactTelephone2}
+              label="E-MAIL ADDRESS"
+              name="email"
+              value={form.email}
               onChange={handleChange}
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12}>
+          <Grid2 size={{ xs: 12 }}>
             <TextField
               label="Address of Registered Office/Work Place"
               name="address"
@@ -143,7 +121,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12}>
+          <Grid2 size={{ xs: 12 }}>
             <TextField
               label="Any Adverse Observations (Pre/Last Visit)"
               name="adverseObservations"
@@ -152,7 +130,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={6}>
+          <Grid2 size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Facility(ies) Permitted"
               name="facilitiesPermitted"
@@ -161,7 +139,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={6}>
+          <Grid2 size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Purpose of Facilities"
               name="purposeOfFacilities"
@@ -170,7 +148,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={4}>
+          <Grid2 size={{ xs: 12, sm: 4 }}>
             <TextField
               label="Sanction Amount"
               name="sanctionAmount"
@@ -179,7 +157,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={4}>
+          <Grid2 size={{ xs: 12, sm: 4 }}>
             <TextField
               label="Date of Last Sanction"
               name="lastSanctionDate"
@@ -190,7 +168,7 @@ export default function UserInput() {
               InputLabelProps={{ shrink: true }}
             />
           </Grid2>
-          <Grid2 xs={12} sm={4}>
+          <Grid2 size={{ xs: 12, sm: 4 }}>
             <TextField
               label="Loan Account Number"
               name="loanAccountNumber"
@@ -199,7 +177,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={6}>
+          <Grid2 size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Amount Disbursed So Far"
               name="amountDisbursed"
@@ -216,7 +194,7 @@ export default function UserInput() {
           Site Details
         </Typography>
         <Grid2 container spacing={2}>
-          <Grid2 xs={12} sm={6}>
+          <Grid2 size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Address of Site / Unit Visited"
               name="siteAddress"
@@ -225,16 +203,33 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={6}>
+          <Grid2 size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Geo Co-ordinates of the Site/Unit"
               name="geoCoordinates"
               value={form.geoCoordinates}
               onChange={handleChange}
               fullWidth
+              onClick={async () => {
+                if (!form.geoCoordinates) {
+                  if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                      (position) => {
+                        const coords = `${position.coords.latitude}, ${position.coords.longitude}`;
+                        updateForm("geoCoordinates", coords);
+                      },
+                      (error) => {
+                        alert("Unable to retrieve location: " + error.message);
+                      }
+                    );
+                  } else {
+                    alert("Geolocation is not supported by your browser.");
+                  }
+                }
+              }}
             />
           </Grid2>
-          <Grid2 xs={12} sm={6}>
+          <Grid2 size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Date of Pre Sanction/Last Visit"
               name="preSanctionVisitDate"
@@ -253,7 +248,7 @@ export default function UserInput() {
           Property Boundaries (Immovable Property)
         </Typography>
         <Grid2 container spacing={2}>
-          <Grid2 xs={12} sm={4}>
+          <Grid2 size={{ xs: 12, sm: 4 }}>
             <TextField
               label="East"
               name="propertyBoundaries.east"
@@ -262,7 +257,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={4}>
+          <Grid2 size={{ xs: 12, sm: 4 }}>
             <TextField
               label="West"
               name="propertyBoundaries.west"
@@ -271,7 +266,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={4}>
+          <Grid2 size={{ xs: 12, sm: 4 }}>
             <TextField
               label="North"
               name="propertyBoundaries.north"
@@ -280,7 +275,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={4}>
+          <Grid2 size={{ xs: 12, sm: 4 }}>
             <TextField
               label="South"
               name="propertyBoundaries.south"
@@ -289,7 +284,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={4}>
+          <Grid2 size={{ xs: 12, sm: 4 }}>
             <TextField
               label="As Per Sale Deed"
               name="propertyBoundaries.asPerSaleDeed"
@@ -298,7 +293,7 @@ export default function UserInput() {
               fullWidth
             />
           </Grid2>
-          <Grid2 xs={12} sm={4}>
+          <Grid2 size={{ xs: 12, sm: 4 }}>
             <TextField
               label="Actuals"
               name="propertyBoundaries.actuals"
@@ -315,7 +310,7 @@ export default function UserInput() {
           Retail Loans (Housing, Vehicle, Mortgage, etc.)
         </Typography>
         <Grid2 container spacing={2}>
-          <Grid2 xs={12}>
+          <Grid2 size={{ xs: 12 }}>
             <TextField
               label="Comments on Operations of the Borrower"
               name="retailComments"
@@ -326,7 +321,7 @@ export default function UserInput() {
               minRows={2}
             />
           </Grid2>
-          <Grid2 xs={12}>
+          <Grid2 size={{ xs: 12 }}>
             <TextField
               label="Verification of Asset Ownership"
               name="retailAssetVerification"
@@ -345,7 +340,7 @@ export default function UserInput() {
           MSME/Corporate/Agri Loans
         </Typography>
         <Grid2 container spacing={2}>
-          <Grid2 xs={12}>
+          <Grid2 size={{ xs: 12 }}>
             <TextField
               label="Comments on Operations of the Borrower"
               name="msmeComments"
@@ -364,7 +359,7 @@ export default function UserInput() {
           Common Verification for All Types of Loans
         </Typography>
         <Grid2 container spacing={2}>
-          <Grid2 xs={12}>
+          <Grid2 size={{ xs: 12 }}>
             <TextField
               label="Common Verification"
               name="commonVerification"
@@ -378,10 +373,31 @@ export default function UserInput() {
         </Grid2>
       </Paper>
 
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+          mt: 2,
+          pb: 2,
+          gap: 2,
+        }}
+      >
         <Button variant="contained" color="primary" onClick={handleSubmit}>
           Capture Values
         </Button>
+        <Button variant="outlined" color="secondary" onClick={handleClear}>
+          Clear Form
+        </Button>
+        {/* <Button variant="outlined" color="secondary" onClick={handleClear}> */}
+        <PDFDownloadLink
+          document={<SampleReport form={form} />}
+          fileName="somename.pdf"
+        >
+          {({ blob, url, loading, error }) =>
+            loading ? "Loading document..." : "Download now!"
+          }
+        </PDFDownloadLink>
+        {/* </Button> */}
       </Box>
     </Box>
   );

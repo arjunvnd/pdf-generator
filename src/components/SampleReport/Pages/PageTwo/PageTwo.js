@@ -3,8 +3,29 @@ import React from "react";
 import { styles } from "../../styles";
 import { SimpleTableRow } from "../../components/SimpleTableRow";
 import { MultiTableRow } from "../../components/MultiTableRow";
+// ...existing code...
 
-export const PageTwo = () => {
+export const PageTwo = ({
+  customerName = "",
+  constitution = "",
+  bankingArrangement = "",
+  consortiumLeaderBank = "",
+  contactTelephone = "",
+  mobilePhone = "",
+  email = "",
+  address = "",
+  adverseObservations = "",
+  facilitiesPermitted = "",
+  purposeOfFacilities = "",
+  sanctionAmount = "",
+  lastSanctionDate = "",
+  loanAccountNumber = "",
+  amountDisbursed = "",
+  siteAddress = "",
+  geoCoordinates = "",
+  preSanctionVisitDate = "",
+  propertyBoundaries = {},
+}) => {
   return (
     <Page size="A4" style={styles.page}>
       <View
@@ -18,10 +39,26 @@ export const PageTwo = () => {
       </View>
 
       <View style={[styles.tableContainer, { borderBottom: 0 }]}>
-        <SimpleTableRow serialNumber={1} rowName="NAME OF THE CUSTOMER" />
-        <SimpleTableRow serialNumber={2} rowName="CONSTITUTION" />
-        <SimpleTableRow serialNumber={3} rowName="BANKING ARRANGEMENT" />
-        <SimpleTableRow serialNumber={4} rowName="IF CONSORTIUM, LEADER BANK" />
+        <SimpleTableRow
+          serialNumber={1}
+          rowName="NAME OF THE CUSTOMER"
+          rowValue={customerName}
+        />
+        <SimpleTableRow
+          serialNumber={2}
+          rowName="CONSTITUTION"
+          rowValue={constitution}
+        />
+        <SimpleTableRow
+          serialNumber={3}
+          rowName="BANKING ARRANGEMENT"
+          rowValue={bankingArrangement}
+        />
+        <SimpleTableRow
+          serialNumber={4}
+          rowName="IF CONSORTIUM, LEADER BANK"
+          rowValue={consortiumLeaderBank}
+        />
         <View style={styles.row}>
           <Text
             style={[styles.tableData, styles.serialColumn, { height: 14 * 3 }]}
@@ -40,25 +77,51 @@ export const PageTwo = () => {
           </View>
 
           <View style={styles.column}>
-            <Text style={styles.tableData}>TELEPHONE</Text>
-            <Text style={styles.tableData}>TELEPHONE1</Text>
-            <Text style={styles.tableData}>TELEPHONE</Text>
+            <Text style={styles.tableData}>TELEPHONE: {contactTelephone}</Text>
+            <Text style={styles.tableData}>MOBILE PHONE: {mobilePhone}</Text>
+            <Text style={styles.tableData}>E-MAIL ADDRESS: {email}</Text>
           </View>
         </View>
         <SimpleTableRow
           serialNumber={6}
           rowName="ADDRESS OF REGISTERED OFFICE/WORK PLACE OF THE CUSTOMER"
+          rowValue={address}
         />
         <SimpleTableRow
           serialNumber={7}
           rowName="ANY ADVERSE OBSERVATIONS REPORTED DURING PRE SANCTION /LAST VISIT"
+          rowValue={adverseObservations}
         />
-        <SimpleTableRow serialNumber={8} rowName="FACILITY(IES) PERMITTED" />
-        <SimpleTableRow serialNumber={9} rowName="PURPOSE OF FACILITIES" />
-        <SimpleTableRow serialNumber={10} rowName="SANCTION AMOUNT" />
-        <SimpleTableRow serialNumber={11} rowName="DATE OF LAST SANCTION" />
-        <SimpleTableRow serialNumber={12} rowName="LOAN ACCOUNT NUMBER" />
-        <SimpleTableRow serialNumber={13} rowName="AMOUNT DISBURSED SO FAR" />
+        <SimpleTableRow
+          serialNumber={8}
+          rowName="FACILITY(IES) PERMITTED"
+          rowValue={facilitiesPermitted}
+        />
+        <SimpleTableRow
+          serialNumber={9}
+          rowName="PURPOSE OF FACILITIES"
+          rowValue={purposeOfFacilities}
+        />
+        <SimpleTableRow
+          serialNumber={10}
+          rowName="SANCTION AMOUNT"
+          rowValue={sanctionAmount}
+        />
+        <SimpleTableRow
+          serialNumber={11}
+          rowName="DATE OF LAST SANCTION"
+          rowValue={lastSanctionDate}
+        />
+        <SimpleTableRow
+          serialNumber={12}
+          rowName="LOAN ACCOUNT NUMBER"
+          rowValue={loanAccountNumber}
+        />
+        <SimpleTableRow
+          serialNumber={13}
+          rowName="AMOUNT DISBURSED SO FAR"
+          rowValue={amountDisbursed}
+        />
 
         <View style={styles.row}>
           <Text style={[styles.tableData, styles.serialColumn]}>14</Text>
@@ -67,13 +130,20 @@ export const PageTwo = () => {
               flex: 1,
             }}
           >
-            <MultiTableRow title="ADDRESS OF SITE / UNIT VISITED" />
-            <MultiTableRow title="GEO CO-ORDINATES OF THE SITE/UNIT" />
+            <MultiTableRow
+              title="ADDRESS OF SITE / UNIT VISITED"
+              value={siteAddress}
+            />
+            <MultiTableRow
+              title="GEO CO-ORDINATES OF THE SITE/UNIT"
+              value={geoCoordinates}
+            />
           </View>
         </View>
         <SimpleTableRow
           serialNumber={15}
           rowName="DATE OF PRE SANCTION/LAST VISIT "
+          rowValue={preSanctionVisitDate}
         />
 
         <View style={styles.row}>
@@ -91,7 +161,6 @@ export const PageTwo = () => {
           >
             <View
               style={{
-                // flex: 1,
                 fontSize: 12,
                 flexDirection: "row",
               }}
@@ -106,46 +175,25 @@ export const PageTwo = () => {
                 ACTUALS
               </Text>
             </View>
-            <View
-              style={{
-                // flex: 1,
-                fontSize: 12,
-                flexDirection: "row",
-              }}
-            >
+            <View style={{ fontSize: 12, flexDirection: "row" }}>
               <Text style={{ flex: 1 }}>EAST</Text>
-              <Text style={{ flex: 1 }}></Text>
-              <Text style={{ flex: 1 }}></Text>
+              <Text style={{ flex: 1 }}>{propertyBoundaries.east || ""}</Text>
+              <Text style={{ flex: 1 }}>{propertyBoundaries.east || ""}</Text>
             </View>
-            <View
-              style={{
-                fontSize: 12,
-                flexDirection: "row",
-              }}
-            >
-              <Text style={{ flex: 1 }}>West</Text>
-              <Text style={{ flex: 1 }}></Text>
-              <Text style={{ flex: 1 }}></Text>
+            <View style={{ fontSize: 12, flexDirection: "row" }}>
+              <Text style={{ flex: 1 }}>WEST</Text>
+              <Text style={{ flex: 1 }}>{propertyBoundaries.west || ""}</Text>
+              <Text style={{ flex: 1 }}>{propertyBoundaries.west || ""}</Text>
             </View>
-            <View
-              style={{
-                fontSize: 12,
-                flexDirection: "row",
-              }}
-            >
-              <Text style={{ flex: 1 }}>North</Text>
-              <Text style={{ flex: 1 }}></Text>
-              <Text style={{ flex: 1 }}></Text>
+            <View style={{ fontSize: 12, flexDirection: "row" }}>
+              <Text style={{ flex: 1 }}>NORTH</Text>
+              <Text style={{ flex: 1 }}>{propertyBoundaries.north || ""}</Text>
+              <Text style={{ flex: 1 }}>{propertyBoundaries.north || ""}</Text>
             </View>
-            <View
-              style={{
-                fontSize: 12,
-                flexDirection: "row",
-              }}
-            >
-              <Text style={{ flex: 1 }}>South</Text>
-              <Text style={{ flex: 1 }}></Text>
-              <Text style={{ flex: 1 }}></Text>
+            <View style={{ fontSize: 12, flexDirection: "row" }}>
+              <Text style={{ flex: 1 }}>SOUTH</Text>
+              <Text style={{ flex: 1 }}>{propertyBoundaries.south || ""}</Text>
+              <Text style={{ flex: 1 }}>{propertyBoundaries.south || ""}</Text>
             </View>
           </View>
         </View>

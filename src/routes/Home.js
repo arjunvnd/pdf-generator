@@ -1,7 +1,17 @@
 import React from "react";
+import UserInput from "../components/UserInput/UserInput";
 
-const Home = () => {
-  return <div>Home</div>;
+export const Home = () => {
+  return (
+    <div
+      style={{
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <UserInput />
+    </div>
+  );
 };
-
-export default Home;

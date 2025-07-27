@@ -5,6 +5,14 @@ import { BulletPoint } from "../../components/BulletPoint";
 import { Page, Text, View } from "@react-pdf/renderer";
 import { styles } from "../../styles";
 
+const today = () => {
+  const d = new Date();
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const year = d.getFullYear();
+  return `${day}/${month}/${year}`;
+};
+
 export const PageOne = () => {
   return (
     <Page size="A4" style={styles.page}>
@@ -14,41 +22,42 @@ export const PageOne = () => {
         }}
       >
         <View style={styles.genralInfoSectionColumnOne}>
-          <GeneralInfoText>Lorem ipsum dolor sit.</GeneralInfoText>
-          <GeneralInfoText>Lorem ipsum dolor sit.</GeneralInfoText>
-          <GeneralInfoText>Lorem ipsum dolor sit.</GeneralInfoText>
+          <GeneralInfoText>CREDIT POLICY SECTION</GeneralInfoText>
+          <GeneralInfoText>RISK MANAGEMENT WING</GeneralInfoText>
+          <GeneralInfoText>HEAD OFFICE :BENGALURU-560002</GeneralInfoText>
         </View>
         <View style={styles.genralInfoSectionColumnTwo}>
           <View style={styles.genralInfoTextColumnTwoTextContainer}>
-            <Text style={styles.genralInfoTextColumnTwo}>Lorem No.</Text>
-            <Text style={styles.genralInfoText}>: 500</Text>
+            <Text style={styles.genralInfoTextColumnTwo}>IG No.</Text>
+            <Text style={styles.genralInfoText}>: IC/606/2024</Text>
           </View>
 
           <View style={styles.genralInfoTextColumnTwoTextContainer}>
             <GeneralInfoText style={styles.genralInfoTextColumnTwo}>
               Date
             </GeneralInfoText>
-            <GeneralInfoText>: 100</GeneralInfoText>
+            <GeneralInfoText>: {today()}</GeneralInfoText>
           </View>
 
           <View style={styles.genralInfoTextColumnTwoTextContainer}>
             <GeneralInfoText style={styles.genralInfoTextColumnTwo}>
               Index
             </GeneralInfoText>
-            <GeneralInfoText>: 100</GeneralInfoText>
+            <GeneralInfoText>: Advances</GeneralInfoText>
           </View>
 
           <View style={styles.genralInfoTextColumnTwoTextContainer}>
             <GeneralInfoText style={styles.genralInfoTextColumnTwo}>
               Sub Index
             </GeneralInfoText>
-            <GeneralInfoText>: 100</GeneralInfoText>
+            <GeneralInfoText>: General</GeneralInfoText>
           </View>
         </View>
       </BorderedSection>
       <BorderedSection>
         <GeneralInfoText>
-          Sub : Lorem ipsum dolor sit amet. Lorem
+          SUB: ADOPTION OF UNIFORM FORMAT FOR DOCUMENTING UNIT/ POST SANCTION
+          VISITS
         </GeneralInfoText>
       </BorderedSection>
       <BorderedSection>
@@ -72,8 +81,9 @@ export const PageOne = () => {
               flex: 1,
             }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
-            sequi?
+            Branches / Offices shall use the format for documenting unit /post
+            sanction visits for the loans granted across all segments viz.
+            Retail, MSME, Agriculture, Corporate.
           </GeneralInfoText>
         </View>
 
@@ -90,8 +100,8 @@ export const PageOne = () => {
               flex: 1,
             }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
-            sequi?
+            Branches / Offices shall note that the format will not supersede any
+            existing formats.
           </GeneralInfoText>
         </View>
 
@@ -108,8 +118,7 @@ export const PageOne = () => {
               flex: 1,
             }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
-            sequi?
+            Photographs of visit to be annexed with the Visit report
           </GeneralInfoText>
         </View>
       </BorderedSection>
